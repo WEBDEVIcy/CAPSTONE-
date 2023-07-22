@@ -2,64 +2,142 @@
 <html>
 <head>
     <title>Quiz</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1 class="quiz-title text-center">Welcome to the Quiz!</h1>
-        <div class="card quiz-card">
-            <div class="card-body">
-                <form method="post">
-                    <?php
-                    function present_question($question_data, $question_number) {
-                        echo '<h3 class="card-title">Question ' . $question_number . ':</h3>';
-                        echo '<p class="card-text">' . $question_data['question'] . '</p>';
-                        foreach ($question_data['choices'] as $index => $choice) {
-                            echo '<div class="form-check">';
-                            echo '<input type="radio" class="form-check-input" name="q' . $question_number . '" id="q' . $question_number . 'choice' . ($index + 1) . '" value="' . ($index + 1) . '">';
-                            echo '<label class="form-check-label" for="q' . $question_number . 'choice' . ($index + 1) . '">' . $choice . '</label>';
-                            echo '</div>';
-                        }
-                    }
+    <div class="container mt-sm-5 my-1">
+        <div class="question ml-sm-5 pl-sm-5 pt-2">
+            <div class="py-2 h5"><b id="question"></b></div>
+            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
+                <label class="options">
+                    <input type="radio" name="radio" value="a">
+                    <span class="checkmark"></span>
+                </label>
 
-                    function start_quiz($quiz_data) {
-                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                            $score = 0;
-                            foreach ($quiz_data as $index => $question) {
-                                $user_choice = isset($_POST['q' . ($index + 1)]) ? intval($_POST['q' . ($index + 1)]) : null;
-                                $correct_answer_index = array_search($question['answer'], ['a', 'b', 'c', 'd']);
-                                if ($user_choice === $correct_answer_index + 1) {
-                                    $score++;
-                                }
-                            }
-                            echo '<h2 class="card-title text-center">Quiz finished! Your score: ' . $score . '/' . count($quiz_data) . '</h2>';
-                        } else {
-                            foreach ($quiz_data as $index => $question) {
-                                present_question($question, $index + 1);
-                            }
-                            echo '<button type="submit" class="btn btn-primary quiz-submit-btn">Submit Answers</button>';
-                        }
-                    }
-
-                    function load_quiz_data($file_path) {
-                        $quiz_json = file_get_contents($file_path);
-                        $quiz_data = json_decode($quiz_json, true);
-                        return $quiz_data['quiz'];
-                    }
-
-                    $quiz_data = load_quiz_data('quiz_data.json');
-                    start_quiz($quiz_data);
-                    ?>
-                </form>
             </div>
+        </div>
+        <div class="d-flex align-items-center pt-3">
+            <div id="prev">
+                <button class="btn btn-primary" style=" margin-left: 20px;">Previous</button>
+            </div>
+            <div class="ml-auto mr-sm-5">
+
+                <button class="btn btn-success" id="next">Next</button>
+
+            </div>
+        </div>
+        <div class="text-center mt-3" id="result" style="display: none;">
+            <h3>Your score: <span id="score"></span> out of <span id="total"></span></h3>
+            <button class="btn btn-success" id="nextChapter" style="display: none; margin-left: 950px;">Next Chapter</button>
         </div>
     </div>
 
+    <script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        fetch('quiz_data.json')
+            .then(response => response.json())
+            .then(data => {
+                const quiz = data.quiz;
+                let currentQuestionIndex = 0;
+                let score = 0;
+
+                function showQuestion(questionIndex) {
+                    const question = quiz[questionIndex];
+                    const questionText = question.question;
+                    const choices = question.choices;
+
+                    document.getElementById('question').innerText = `Q. ${questionText}`;
+
+                    const optionsContainer = document.getElementById('options');
+                    optionsContainer.innerHTML = '';
+
+                    choices.forEach((choice, index) => {
+                        const label = document.createElement('label');
+                        label.className = 'options';
+                        label.innerText = choice;
+
+                        const radioInput = document.createElement('input');
+                        radioInput.type = 'radio';
+                        radioInput.name = 'radio';
+                        radioInput.value = String.fromCharCode(97 + index); 
+
+                        const span = document.createElement('span');
+                        span.className = 'checkmark';
+
+                        label.appendChild(radioInput);
+                        label.appendChild(span);
+
+                        optionsContainer.appendChild(label);
+                    });
+                }
+
+                function showNextQuestion() {
+                    if (currentQuestionIndex < quiz.length - 1) {
+                        currentQuestionIndex++;
+                        showQuestion(currentQuestionIndex);
+                    } else {
+
+                        document.getElementById('result').style.display = 'block';
+                        document.getElementById('question').style.display = 'none';
+                        document.getElementById('options').style.display = 'none';
+                        document.getElementById('prev').style.display = 'none';
+                        document.getElementById('next').style.display = 'none';
+                        document.getElementById('nextChapter').style.display = 'block';
+                        showResult();
+                    }
+                }
+
+                function showPreviousQuestion() {
+                    if (currentQuestionIndex > 0) {
+                        currentQuestionIndex--;
+                        showQuestion(currentQuestionIndex);
+                    }
+                }
+
+                function showResult() {
+                    const totalQuestions = quiz.length;
+                    document.getElementById('score').innerText = score;
+                    document.getElementById('total').innerText = totalQuestions;
+                }
+
+                function calculateScore(selectedAnswer) {
+                    const correctAnswer = quiz[currentQuestionIndex].answer;
+                    if (selectedAnswer === correctAnswer) {
+                        score++;
+                    }
+                }
+
+                const submitButton = document.getElementById('next');
+                submitButton.addEventListener('click', () => {
+                    const selectedOption = document.querySelector('input[name="radio"]:checked');
+                    if (selectedOption) {
+                        const selectedAnswer = selectedOption.value;
+                        calculateScore(selectedAnswer);
+                        showNextQuestion();
+                    }
+                });
+
+
+                showQuestion(currentQuestionIndex);
+
+                document.getElementById('prev').addEventListener('click', showPreviousQuestion);
+
+
+                document.getElementById('nextChapter').addEventListener('click', () => {
+
+                    currentQuestionIndex = 0;
+                    score = 0;
+                    document.getElementById('result').style.display = 'none';
+                    document.getElementById('question').style.display = 'block';
+                    document.getElementById('options').style.display = 'block';
+                    document.getElementById('prev').style.display = 'block';
+                    document.getElementById('next').style.display = 'block';
+                    document.getElementById('nextChapter').style.display = 'none';
+                    showQuestion(currentQuestionIndex);
+                });
+            })
+            .catch(error => console.error('Error loading quiz data:', error));
+    </script>
 </body>
 </html>
