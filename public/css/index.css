@@ -406,3 +406,76 @@ button:hover {
 .footer p {
     color: #B0903D;
 }
+
+/* lst */
+/* [srch-br] */
+.search-bar-wrapper input[type="text"] {
+    padding-right: 40px;
+    width: 152px;
+}
+
+/* [responsive-styles] */
+@media only screen and (max-width: 768px) {
+    /* [for-tablets] */
+    .navbar {
+        flex-direction: column;
+    }
+
+    .logo,
+    .centered-buttons,
+    .right-side {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search-bar {
+        margin-top: 10px;
+    }
+
+    .text-container {
+        text-align: center;
+    }
+
+    .book-group {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .book-card {
+        width: 45%;
+        margin: 10px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /* [for-mobiles] */
+    .navbar {
+        flex-direction: column;
+    }
+
+    .logo,
+    .search-bar,
+    .centered-buttons,
+    .right-side {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero {
+        flex-direction: column;
+    }
+
+    .text-container {
+        text-align: center;
+    }
+
+    .book-group {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .book-card {
+        width: 100%;
+        margin: 10px;
+    }
+}
