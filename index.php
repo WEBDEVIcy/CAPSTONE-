@@ -11,9 +11,13 @@
     <nav class="navbar">
     <!-- first-group -->
     <div class="logo">RizJourney</div>
-    <div class="search-bar">
-        <input type="text" placeholder="Search RizJourney">
-        <button class="round-button">Search</button>
+    <div class="search-bar-container">
+        <form method="post" action="">
+            <div class="search-bar-wrapper">
+                <input type="text" name="search" placeholder="Search RizJourney">
+                <button type="submit" class="round-button">Search</button>
+            </div>
+        </form>
     </div>
     <!-- second-group -->
     <div class="centered-buttons">
@@ -75,6 +79,14 @@
             $this->buyLink = $buyLink;
         }
 
+        public function getTitle() {
+            return $this->title;
+        }
+
+        public function getAuthor() {
+            return $this->author;
+        }
+
         public function display() {
             echo '<div class="book-card">';
             echo '<img src="' . $this->image . '" alt="' . $this->title . '">';
@@ -84,6 +96,20 @@
             echo '<button class="save-book-button">Save Book</button>';
             echo '</div>';
         }
+    }
+
+    // Function to search for books based on a keyword
+    function searchBooks($keyword, $books) {
+        $results = array();
+
+        foreach ($books as $book) {
+            // Check if the book title or author contains the keyword
+            if (stripos($book->getTitle(), $keyword) !== false || stripos($book->getAuthor(), $keyword) !== false) {
+                $results[] = $book;
+            }
+        }
+
+        return $results;
     }
 
     // create-an-array-of-books
@@ -102,7 +128,7 @@
     <div class="books-section">
         <div class="book-group">
             <?php
-        // display-the-books-[using the book class]
+        // display-the-books-[using-the-book-class]
         foreach ($books as $book) {
             $book->display();
         }
@@ -116,6 +142,25 @@
         <a href="#" class=""><img src="" alt="">Fiction</a>&nbsp;&nbsp;&nbsp;
         <a href="#" class=""><img src="" alt="">Literature & Fiction</a>
     </div>
+
+    <!-- display-search-results -->
+    <?php
+    if (isset($_POST['search'])) {
+        $searchKeyword = $_POST['search'];
+        $searchResults = searchBooks($searchKeyword, $books);
+
+        if (!empty($searchResults)) {
+            echo '<h3>Search Results:</h3>';
+            echo '<div class="book-group">';
+            foreach ($searchResults as $book) {
+                $book->display();
+            }
+            echo '</div>';
+        } else {
+            echo '<p>No matching books found.</p>';
+        }
+    }
+    ?>
 
     <!-- contact-section -->
     <div class="heading"><h3>Contact Us</h3></div>
@@ -155,7 +200,7 @@
                 <img src="./public/images/lantern-1.png" alt="Logo">
             </div>
 
-            <!-- second-div-[about us] -->
+            <!-- second-div-[about-us] -->
             <div class="footer-item">
                 <h3>About Us</h3>
                 <a href="#">Our Team</a>
@@ -172,9 +217,9 @@
             <div class="footer-item">
                 <h3>Follow Us</h3>
                 <div class="social-icons">
-                    <a href="#" class="social-icon"><img src="facebook-icon.png" alt="Facebook"></a>
-                    <a href="#" class="social-icon"><img src="twitter-icon.png" alt="Twitter"></a>
-                    <a href="#" class="social-icon"><img src="instagram-icon.png" alt="Instagram"></a>
+                    <a href="#" class="social-icon"><img src="./public/images/facebook-logo-1.png" alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="./public/images/twitter-logo.png"></a>
+                    <a href="#" class="social-icon"><img src="./public/images/instagram-logo.png" alt="Instagram"></a>
                 </div>
             </div>
         </div>
