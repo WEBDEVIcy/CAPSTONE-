@@ -98,12 +98,11 @@
         }
     }
 
-    // Function to search for books based on a keyword
+    // [search-for-books]
     function searchBooks($keyword, $books) {
         $results = array();
 
         foreach ($books as $book) {
-            // Check if the book title or author contains the keyword
             if (stripos($book->getTitle(), $keyword) !== false || stripos($book->getAuthor(), $keyword) !== false) {
                 $results[] = $book;
             }
@@ -195,7 +194,7 @@
     <!-- footer-section -->
     <div class="footer">
         <div class="footer-group">
-            <!-- first-div-[image container] -->
+            <!-- first-div-[image-container] -->
             <div class="footer-item ftr-image-container">
                 <img src="./public/images/lantern-1.png" alt="Logo">
             </div>

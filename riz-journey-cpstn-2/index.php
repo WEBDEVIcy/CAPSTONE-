@@ -103,7 +103,6 @@
         $results = array();
 
         foreach ($books as $book) {
-            // Check if the book title or author contains the keyword
             if (stripos($book->getTitle(), $keyword) !== false || stripos($book->getAuthor(), $keyword) !== false) {
                 $results[] = $book;
             }
