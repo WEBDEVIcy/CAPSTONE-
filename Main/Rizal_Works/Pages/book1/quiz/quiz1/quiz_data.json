@@ -1,0 +1,54 @@
+{
+  "questions": [
+    {
+      "question": "Sino si Crisostomo Ibarra, at bakit siya bumalik sa Pilipinas matapos ang pitong taon ng pag-aaral sa Europa?",
+      "choices": {
+        "a": "Si Crisostomo Ibarra ay isang matalinong binatang Pilipino na nag-aral sa Europa. Bumalik siya sa Pilipinas upang alamin ang katotohanan tungkol sa kanyang ama at ipagpatuloy ang mga proyekto nitong nasimulan.",
+        "b": "Si Crisostomo Ibarra ay isang mapagmahal na anak na nag-aral sa Europa. Bumalik siya sa Pilipinas upang ipagpatuloy ang negosyo ng kanyang ama.",
+        "c": "Si Crisostomo Ibarra ay isang makapangyarihang tao na nais maging hari ng Pilipinas. Bumalik siya matapos ang pitong taon upang simulan ang rebolusyon laban sa mga Kastila.",
+        "d": "Si Crisostomo Ibarra ay isang magsasaka na nag-aaral sa Europa. Bumalik siya sa Pilipinas upang ipagpatuloy ang mga adhikain ng kanyang yumaong ama."
+      },
+      "answer": "a"
+    },
+    {
+      "question": "Pagkatapos bumalik sa Pilipinas, saan dinala ni Don Rafael Ibarra, ang ama ni Crisostomo Ibarra, si Crisostomo, at ano ang naganap doon?",
+      "choices": {
+        "a": "Dinala ni Don Rafael Ibarra si Crisostomo sa kanilang bahay sa Maynila, at doon ay ipinakilala niya ang anak sa mga kaibigan at kamag-anak.",
+        "b": "Dinala ni Don Rafael Ibarra si Crisostomo sa simbahan upang magpasalamat at magdasal para sa kaligtasan nila sa buong paglalakbay.",
+        "c": "Dinala ni Don Rafael Ibarra si Crisostomo sa isang malaking pagtitipon sa bahay ni Kapitan Tiago, at doon ay nagkaroon ng salu-salo at pagsasaya.",
+        "d": "Dinala ni Don Rafael Ibarra si Crisostomo sa opisina ng alkalde upang ipaalam ang pagbabalik nito sa Pilipinas."
+      },
+      "answer": "c"
+    },
+    {
+      "question": "Sa pagtitipon na ito, anong mga aspeto ng lipunan ang ipinakita ni Rizal sa pamamagitan ng salu-salo na inihanda ni Kapitan Tiago?",
+      "choices": {
+        "a": "Ipinalabas ni Rizal ang pagkakaiba-iba ng mga Pilipino batay sa kanilang estado sa lipunan, tulad ng pagkakaibang pagtrato sa mga magulang at mahihirap.",
+        "b": "Ipinakita ni Rizal ang pagkakaisa at pagkakapantay-pantay ng mga Pilipino sa kabila ng kanilang pagkakaiba-iba sa estado at yaman.",
+        "c": "Binigyang-diin ni Rizal ang pagiging makasarili ng mga Pilipino, kung saan mas pinapahalagahan ang kanilang sariling kaginhawaan kaysa sa kapakanan ng iba.",
+        "d": "Ipinakita ni Rizal ang pang-aapi ng mga Kastila sa mga Pilipino at ang pagiging makapangyarihan ng mga prayle sa kanilang mga buhay."
+      },
+      "correct_answer": "b"
+    },
+    {
+      "question": "Sino-sino ang mga mahahalagang karakter na nakilala ni Crisostomo Ibarra sa pagtitipon, at bakit sila mahalaga sa kwento?",
+      "choices": {
+        "a": "Nakilala ni Crisostomo si Maria Clara, ang babaeng kanyang minamahal at kasintahan. Mahalaga siya sa kwento dahil sa papel niyang nagbibigay-inspirasyon kay Crisostomo.",
+        "b": "Nakilala ni Crisostomo si Kapitan Tiago, isang mayamang Pilipinong nag-organisa ng pagtitipon. Mahalaga siya sa kwento dahil sa kanyang impluwensya sa lipunan.",
+        "c": "Nakilala ni Crisostomo si Padre Damaso, isang mapanakop na prayle. Mahalaga siya sa kwento dahil sa kanyang kontrabida at kontra sa mga pangunahing tauhan.",
+        "d": "Nakilala ni Crisostomo si Basilio at Crispin, magkapatid na mahirap na kabataan. Mahalaga sila sa kwento dahil sa kanilang pagkakasangkot sa mga pangyayari."
+      },
+      "answer": "a"
+    },
+    {
+      "question": "Anong mga katotohanan ang natuklasan ni Crisostomo Ibarra tungkol sa kanyang ama sa loob ng salu-salo, at paano ito nakaimpluwensya sa kanya?",
+      "choices": {
+        "a": "Natuklasan ni Crisostomo na ang kanyang ama ay itinuring na rebolusyonaryo noong una, ngunit nanghihingi ng tulong sa mga prayle nang siya ay nahuli. Ito ay nagpabago sa pagtingin ni Crisostomo sa kanyang ama at sa lipunan.",
+        "b": "Natuklasan ni Crisostomo na ang kanyang ama ay may malaking utang na hindi nabayaran, kaya't nagkaroon ito ng malaking epekto sa kanilang negosyo. Ito ang nagudyok kay Crisostomo na ituloy ang negosyo ng kanyang ama.",
+        "c": "Natuklasan ni Crisostomo na ang kanyang ama ay naging isang kriminal at nagnakaw ng yaman mula sa mga Pilipino. Ito ang nagpalala sa galit ni Crisostomo sa mga Kastila at prayle.",
+        "d": "Natuklasan ni Crisostomo na ang kanyang ama ay isang bayani na nag-alay ng kanyang buhay para sa kalayaan ng Pilipinas. Ito ang nagbigay-inspirasyon kay Crisostomo na maging isang makabayan."
+      },
+      "answer": "a"
+    }
+  ]
+}
